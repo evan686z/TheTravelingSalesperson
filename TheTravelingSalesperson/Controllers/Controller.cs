@@ -75,6 +75,7 @@ namespace TheTravelingSalesperson
                         _salesperson.CitiesVisited.Add(nextCity);
                         break;
                     case MenuOption.Buy:
+                        _salesperson.CurrentStock.AddWidgets(_consoleView.DisplayGetNumberOfUnitsToBuy());
                         break;
                     case MenuOption.Sell:
                         break;

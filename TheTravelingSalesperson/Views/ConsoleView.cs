@@ -66,7 +66,7 @@ namespace TheTravelingSalesperson
             ConsoleKeyInfo response = Console.ReadKey();
 
             Console.WriteLine();
-
+            ConsoleUtil.HeaderText = "Main Menu";
             Console.CursorVisible = true;
         }
 
@@ -275,9 +275,20 @@ namespace TheTravelingSalesperson
 
             DisplayContinuePrompt();
         }
+        public int DisplayGetNumberOfUnitsToBuy()
+        {
+            int numberOfUnitsToAdd = 0;
 
+            ConsoleUtil.HeaderText = "Buy Inventory";
+            ConsoleUtil.DisplayReset();
 
+            ConsoleUtil.DisplayMessage("How many would you like to buy?");
+            numberOfUnitsToAdd = int.Parse(Console.ReadLine());
 
+            DisplayContinuePrompt();
+
+            return numberOfUnitsToAdd;
+        }
         #endregion
 
     }
