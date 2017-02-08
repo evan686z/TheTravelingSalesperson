@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheTravelingSalesperson
 {
-    class Salesperson
+    public class Salesperson
     {
         #region FIELDS
 
@@ -14,6 +14,7 @@ namespace TheTravelingSalesperson
         private string _lastName;
         private string _accountId;
         private List<string> _citiesVisited;
+        private WidgetItemStock _currentStock;
 
         #endregion
 
@@ -30,8 +31,6 @@ namespace TheTravelingSalesperson
             get { return _lastName; }
             set { _lastName = value; }
         }
-
-
         public string AccountId
         {
             get { return _accountId; }
@@ -42,13 +41,19 @@ namespace TheTravelingSalesperson
             get { return _citiesVisited; }
             set { _citiesVisited = value; }
         }
+        public WidgetItemStock CurrentStock
+        {
+            get { return _currentStock; }
+            set { _currentStock = value; }
+        }
         #endregion
 
         #region CONSTRUCTORS
 
         public Salesperson()
         {
-            CitiesVisited = new List<string>();
+            _citiesVisited = new List<string>();
+            _currentStock = new WidgetItemStock();
         }
 
         #endregion

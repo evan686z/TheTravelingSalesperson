@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheTravelingSalesperson
 {
-    class Controller
+    public class Controller
     {
         #region FIELDS
 
@@ -79,6 +79,7 @@ namespace TheTravelingSalesperson
                     case MenuOption.Sell:
                         break;
                     case MenuOption.DisplayInventory:
+                        _consoleView.DisplayInventory();
                         break;
                     case MenuOption.DisplayCities:
                         _consoleView.DisplayCitiesTraveled();

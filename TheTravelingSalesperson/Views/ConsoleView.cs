@@ -42,7 +42,7 @@ namespace TheTravelingSalesperson
 
             ConsoleUtil.DisplayReset();
 
-            ConsoleUtil.DisplayMessage("- add welcome message -");
+            ConsoleUtil.DisplayMessage("Welcome to the thing with the stuffs");
             Console.WriteLine();
 
             sb.Clear();
@@ -94,6 +94,20 @@ namespace TheTravelingSalesperson
 
             ConsoleUtil.DisplayPromptMessage("Enter your account number: ");
             _salesperson.AccountId = Console.ReadLine();
+            Console.WriteLine();
+
+            ConsoleUtil.DisplayPromptMessage("Enter your widget type: ");
+            string userResponse = Console.ReadLine();
+            // typeof returns the type(WidgetType), where we are looking(userRepsonse).
+            // Than we cast it as our own emum when we get it back from the user
+            _salesperson.CurrentStock.Type = (WidgetItemStock.WidgetType)Enum.Parse(typeof(WidgetItemStock.WidgetType), userResponse, true);
+            Console.WriteLine();
+
+            ConsoleUtil.DisplayPromptMessage("Enter number of units: ");
+            int numberOfUnits = int.Parse(Console.ReadLine());
+            _salesperson.CurrentStock.AddWidgets(numberOfUnits);
+            // vSame as above only more compact
+            //_salesperson.CurrentStock.AddWidgets(int.Parse(Console.ReadLine()));
             Console.WriteLine();
 
             DisplayContinuePrompt();
@@ -222,7 +236,7 @@ namespace TheTravelingSalesperson
         {
             ConsoleUtil.HeaderText = "Cities Traveled To";
             ConsoleUtil.DisplayReset();
-            ConsoleUtil.DisplayMessage("Cities Traveled:");
+            ConsoleUtil.DisplayMessage("You have traveled to the following cities:");
             Console.WriteLine();
             foreach (string city in _salesperson.CitiesVisited)
             {
@@ -252,6 +266,17 @@ namespace TheTravelingSalesperson
 
             return nextCity;
         }
+        public void DisplayInventory()
+        {
+            ConsoleUtil.HeaderText = "Inventory: ";
+            ConsoleUtil.DisplayReset();
+            ConsoleUtil.DisplayMessage($"Widget Type: { _salesperson.CurrentStock.Type}");
+            ConsoleUtil.DisplayMessage($"Number of Units: { _salesperson.CurrentStock.NumberOfUnits}");
+
+            DisplayContinuePrompt();
+        }
+
+
 
         #endregion
 
