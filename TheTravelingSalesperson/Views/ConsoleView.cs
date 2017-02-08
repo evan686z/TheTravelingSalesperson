@@ -289,6 +289,20 @@ namespace TheTravelingSalesperson
 
             return numberOfUnitsToAdd;
         }
+        public int DisplayGetNumberOfUnitsToSell()
+        {
+            int numberOfUnitsToSubtract = 0;
+
+            ConsoleUtil.HeaderText = "Sell Inventory";
+            ConsoleUtil.DisplayReset();
+
+            ConsoleUtil.DisplayMessage("How many would you like to sell?");
+            numberOfUnitsToSubtract = int.Parse(Console.ReadLine());
+
+            DisplayContinuePrompt();
+
+            return numberOfUnitsToSubtract;
+        }
         #endregion
 
     }

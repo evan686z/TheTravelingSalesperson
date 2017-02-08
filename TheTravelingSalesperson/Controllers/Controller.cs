@@ -78,6 +78,7 @@ namespace TheTravelingSalesperson
                         _salesperson.CurrentStock.AddWidgets(_consoleView.DisplayGetNumberOfUnitsToBuy());
                         break;
                     case MenuOption.Sell:
+                        _salesperson.CurrentStock.SubtractWidgets(_consoleView.DisplayGetNumberOfUnitsToSell());
                         break;
                     case MenuOption.DisplayInventory:
                         _consoleView.DisplayInventory();
