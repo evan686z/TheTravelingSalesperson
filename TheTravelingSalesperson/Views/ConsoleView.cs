@@ -69,12 +69,8 @@ namespace TheTravelingSalesperson
             ConsoleUtil.HeaderText = "Main Menu";
             Console.CursorVisible = true;
         }
-
         /// <summary>
-        /// setup the new salesperson object with the initial data
-        /// Note: To maintain the pattern of only the Controller changing the data this method should
-        ///       return a Salesperson object with the initial data to the controller. For simplicity in 
-        ///       this demo, the ConsoleView object is allowed to access the Salesperson object's properties.
+        /// Setup initial account information
         /// </summary>
         public void DisplaySetupAccount()
         {
@@ -96,7 +92,7 @@ namespace TheTravelingSalesperson
             _salesperson.AccountId = Console.ReadLine();
             Console.WriteLine();
 
-            ConsoleUtil.DisplayPromptMessage("Enter your widget type: ");
+            ConsoleUtil.DisplayPromptMessage("Enter your widget type(Fuzzy, Spotted, or Striped): ");
             string userResponse = Console.ReadLine();
             // typeof returns the type(WidgetType), where we are looking(userRepsonse).
             // Than we cast it as our own emum when we get it back from the user
@@ -121,9 +117,6 @@ namespace TheTravelingSalesperson
             MenuOption userMenuChoice = MenuOption.None;
             bool usingMenu = true;
 
-            //
-            // TODO enable each application function separately and test
-            //
             while (usingMenu)
             {
                 //
@@ -144,6 +137,7 @@ namespace TheTravelingSalesperson
                     "\t" + "4. Display Inventory" + Environment.NewLine +
                     "\t" + "5. Display Cities" + Environment.NewLine +
                     "\t" + "6. Display Account Info" + Environment.NewLine +
+                    "\t" + "7. Edit Account Info" + Environment.NewLine +
                     "\t" + "E. Exit" + Environment.NewLine);
 
                 //
@@ -175,6 +169,10 @@ namespace TheTravelingSalesperson
                         break;
                     case '6':
                         userMenuChoice = MenuOption.DisplayAccountInfo;
+                        usingMenu = false;
+                        break;
+                    case '7':
+                        userMenuChoice = MenuOption.UpdateAccountInfo;
                         usingMenu = false;
                         break;
                     case 'E':
@@ -211,6 +209,7 @@ namespace TheTravelingSalesperson
             ConsoleUtil.DisplayMessage("First Name: " + _salesperson.FirstName);
             ConsoleUtil.DisplayMessage("Last Name: " + _salesperson.LastName);
             ConsoleUtil.DisplayMessage("Account Id: " + _salesperson.AccountId);
+            //ConsoleUtil.DisplayMessage(string.Format("Widget Type: {0}", _salesperson.CurrentStock.GetType));
             DisplayContinuePrompt();
         }
         /// <summary>
@@ -266,6 +265,9 @@ namespace TheTravelingSalesperson
 
             return nextCity;
         }
+        /// <summary>
+        /// Display Inventory Method
+        /// </summary>
         public void DisplayInventory()
         {
             ConsoleUtil.HeaderText = "Inventory: ";
@@ -275,6 +277,10 @@ namespace TheTravelingSalesperson
 
             DisplayContinuePrompt();
         }
+        /// <summary>
+        /// Method to buy inventory
+        /// </summary>
+        /// <returns></returns>
         public int DisplayGetNumberOfUnitsToBuy()
         {
             int numberOfUnitsToAdd = 0;
@@ -289,6 +295,10 @@ namespace TheTravelingSalesperson
 
             return numberOfUnitsToAdd;
         }
+        /// <summary>
+        /// Method to sell inventory
+        /// </summary>
+        /// <returns></returns>
         public int DisplayGetNumberOfUnitsToSell()
         {
             int numberOfUnitsToSubtract = 0;
@@ -302,6 +312,51 @@ namespace TheTravelingSalesperson
             DisplayContinuePrompt();
 
             return numberOfUnitsToSubtract;
+        }
+        /// <summary>
+        /// Update Salesperson Account Info
+        /// </summary>
+        /// <param name="salesperson"></param>
+        /// <returns></returns>
+        public Salesperson UpdateAccountInfo(Salesperson salesperson)
+        {
+            string updateSalesperson = "";
+            ConsoleUtil.DisplayReset();
+
+            ConsoleUtil.DisplayMessage("");
+            ConsoleUtil.HeaderText = "Update Account Info";
+            ConsoleUtil.DisplayMessage("");
+            // Update First Name
+            ConsoleUtil.DisplayMessage(String.Format("Account First Name: {0}", salesperson.FirstName));
+            ConsoleUtil.DisplayPromptMessage("Enter a new first name or press ENTER to keep current name: ");
+            updateSalesperson = Console.ReadLine();
+            if (updateSalesperson != "")
+            {
+                salesperson.FirstName = updateSalesperson;
+            }
+            ConsoleUtil.DisplayMessage("");
+            // Update Last Name
+            ConsoleUtil.DisplayMessage(String.Format("Account Last Name: {0}", salesperson.LastName));
+            ConsoleUtil.DisplayPromptMessage("Enter a new last name or press ENTER to keep current name: ");
+            updateSalesperson = Console.ReadLine();
+            if (updateSalesperson != "")
+            {
+                salesperson.LastName = updateSalesperson;
+            }
+            ConsoleUtil.DisplayMessage("");
+            // Update Account ID
+            ConsoleUtil.DisplayMessage(String.Format("Account ID: {0}", salesperson.AccountId));
+            ConsoleUtil.DisplayPromptMessage("Enter a new account number or press ENTER to keep current name: ");
+            updateSalesperson = Console.ReadLine();
+            if (updateSalesperson != "")
+            {
+                salesperson.AccountId = updateSalesperson;
+            }
+
+            ConsoleUtil.DisplayReset();
+            DisplayContinuePrompt();
+
+            return salesperson;
         }
         #endregion
 

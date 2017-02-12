@@ -89,6 +89,9 @@ namespace TheTravelingSalesperson
                     case MenuOption.DisplayAccountInfo:
                         _consoleView.DisplayAccountInfo();
                         break;
+                    case MenuOption.UpdateAccountInfo:
+                        _consoleView.UpdateAccountInfo(_salesperson);
+                        break;
                     case MenuOption.Exit:
                         _consoleView.DisplayExitPrompt();
                         break;

@@ -15,6 +15,7 @@ namespace TheTravelingSalesperson
         DisplayInventory,
         DisplayCities,
         DisplayAccountInfo,
+        UpdateAccountInfo,
         Exit
     }
 }
